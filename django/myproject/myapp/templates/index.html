@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphic Effect Example</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0f3057; /* Fallback for unsupported browsers */
+            background-image: url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .glass-container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px;
+            width: 300px;
+            max-width: 80%;
+        }
+
+        .glass-container a {
+            color:black;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            margin: 5px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .glass-container a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+
+        .glass-container h1 {
+            font-size: 28px;
+            color: #58a6ff;
+            margin-top: 20px;
+        }
+
+        .glass-container p {
+            font-weight: bold;
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .glass-container .logout-btn {
+            border-color: #ff4d4d; /* Red color for logout button */
+        }
+
+        .glass-container .login-btn {
+            border-color: #80e027; /* Green color for login button */
+            margin-right: 10px;
+        }
+
+        .glass-container .signup-btn {
+            border-color: #bf55ec; /* Purple color for signup button */
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-container">
+        {% if request.user.is_authenticated %}
+            <p>Welcome, <span style="color: #f7a440;">{{ request.user.username }}</span>!</p>
+            <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}" class="login-btn">Login</a>
+            <a href="{% url 'signup' %}" class="signup-btn">Signup</a>
+        {% endif %}
+        <h1>Welcome to Our Website</h1>
+    </div>
+</body>
+</html>
